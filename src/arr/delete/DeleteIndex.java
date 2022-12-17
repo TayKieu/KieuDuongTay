@@ -1,4 +1,4 @@
-package delete;
+package arr.delete;
 
 import java.util.Scanner;
 
