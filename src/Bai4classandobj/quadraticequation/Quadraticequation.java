@@ -1,4 +1,4 @@
-package classandobj.quadraticequation;
+package Bai4classandobj.quadraticequation;
 
 import java.util.Scanner;
 
