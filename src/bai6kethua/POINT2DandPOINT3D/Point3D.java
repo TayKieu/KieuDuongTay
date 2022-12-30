@@ -36,9 +36,9 @@ public class Point3D extends Point2D {
     @Override
     public String toString() {
         return "Point3D{" +
-                ", x=" + x +
+                "x=" + x +
                 ", y=" + y +
-                "z=" + z +
+                ", z=" + z +
                 '}';
     }
 }
