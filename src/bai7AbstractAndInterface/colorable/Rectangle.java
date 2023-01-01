@@ -1,4 +1,4 @@
-package bai7AbstractAndInterface.resizeable;
+package bai7AbstractAndInterface.colorable;
 
 public class Rectangle extends Shape {
     private double width = 1.0;
@@ -41,7 +41,6 @@ public class Rectangle extends Shape {
     public double getPerimeter() {
         return 2 * (width + this.length);
     }
-
     @Override
     public String toString() {
         return "A Rectangle with width="
@@ -50,14 +49,6 @@ public class Rectangle extends Shape {
                 + getLength()
                 + ", which is a subclass of "
                 + super.toString();
-    }
-
-    @Override
-    public void resize(double percent) {
-        double increaselength = this.length * percent / 100;
-        double increasewidth = this.width * percent / 100;
-        this.setLength(increaselength);
-        this.setWidth(increasewidth);
     }
 
 }

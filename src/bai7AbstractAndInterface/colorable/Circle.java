@@ -1,6 +1,6 @@
-package bai7AbstractAndInterface.resizeable;
+package bai7AbstractAndInterface.colorable;
 
-public class Circle extends Shape {
+public class Circle extends Shape{
     private double radius = 1.0;
 
     public Circle() {
@@ -38,12 +38,4 @@ public class Circle extends Shape {
                 + ", which is a subclass of "
                 + super.toString();
     }
-
-    @Override
-    public void resize(double percent) {
-        double increaseradius = this.radius * percent / 100;
-        this.setRadius(increaseradius);
-    }
-
-
 }

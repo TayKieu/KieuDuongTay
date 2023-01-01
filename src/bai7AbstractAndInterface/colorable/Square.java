@@ -1,4 +1,4 @@
-package bai7AbstractAndInterface.resizeable;
+package bai7AbstractAndInterface.colorable;
 
 public class Square extends Shape {
     private double side = 3;
@@ -38,10 +38,8 @@ public class Square extends Shape {
                 + ", which is a subclass of "
                 + super.toString();
     }
-
     @Override
-    public void resize(double percent) {
-        double increaseside = this.side * percent / 100;
-        this.setSide(increaseside);
+    public void howtoColor() {
+        System.out.println("Color all four sides");
     }
 }

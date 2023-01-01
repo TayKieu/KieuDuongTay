@@ -1,6 +1,6 @@
-package bai7AbstractAndInterface.resizeable;
+package bai7AbstractAndInterface.colorable;
 
-public abstract class Shape implements Resizeable{
+public abstract class Shape implements Colorable {
     private String color = "green";
     private boolean filled = true;
 
@@ -37,8 +37,7 @@ public abstract class Shape implements Resizeable{
     }
 
     @Override
-    public void resize() {
+    public void howtoColor() {
     }
 
-    public abstract void resize(double percent);
 }
