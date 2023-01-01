@@ -44,20 +44,18 @@ public class Rectangle extends Shape {
 
     @Override
     public String toString() {
-        return "A Rectangle with width="
-                + getWidth()
-                + " and length="
-                + getLength()
-                + ", which is a subclass of "
-                + super.toString();
+        return "Rectangle{" +
+                "width=" + width +
+                ", length=" + length +
+                '}';
     }
 
     @Override
     public void resize(double percent) {
-        double increase = this.length * percent / 100;
-        double increase1 = this.width * percent / 100;
-        this.setLength(increase);
-        this.setWidth(increase1);
+        double increaselength = this.length * percent / 100;
+        double increasewidth = this.width * percent / 100;
+        this.setLength(increaselength);
+        this.setWidth(increasewidth);
     }
 
 }

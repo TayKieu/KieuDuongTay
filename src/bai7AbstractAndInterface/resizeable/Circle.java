@@ -33,16 +33,15 @@ public class Circle extends Shape {
 
     @Override
     public String toString() {
-        return "A Circle with radius="
-                + getRadius()
-                + ", which is a subclass of "
-                + super.toString();
+        return "Circle{" +
+                "radius=" + radius +
+                '}';
     }
 
     @Override
     public void resize(double percent) {
-        double increase = this.radius * percent / 100;
-        this.setRadius(increase);
+        double increaseradius = this.radius * percent / 100;
+        this.setRadius(increaseradius);
     }
 
 
