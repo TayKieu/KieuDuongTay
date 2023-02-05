@@ -26,6 +26,7 @@ public class MyLinkedList {
         for(int i=0; i < index-1 && temp.next != null; i++) {
             temp = temp.next;
         }
+
         holder = temp.next;
         temp.next = new Node(data);
         temp.next.next = holder;
