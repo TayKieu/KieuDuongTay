@@ -8,8 +8,8 @@ public class ProductManager {
     public void add(Product product) {
         list.add(product);
     }
-    public void edit(){
-        String id = scanner.nextLine();
+    public void edit(String id){
+        id = scanner.nextLine();
         for(int i = 0; i< list.size();i++){
             if(id.equalsIgnoreCase(list.get(i).getId())){
                 list.get(i).setId(scanner.nextLine());
@@ -19,8 +19,8 @@ public class ProductManager {
             }
         }
     }
-    public void remove() {
-        String id = scanner.nextLine();
+    public void remove(String id) {
+        id = scanner.nextLine();
         for (int i = 0; i < list.size(); i++) {
             if (id.equalsIgnoreCase(list.get(i).getId())) {
                 list.remove(i);
@@ -28,8 +28,8 @@ public class ProductManager {
             }
         }
     }
-    public void search() {
-        String id = scanner.nextLine();
+    public void search(String id) {
+        id = scanner.nextLine();
         for (int i = 0; i < list.size(); i++) {
             if (list.get(i).getId().equalsIgnoreCase(id)) {
                 System.out.println(list.get(i).toString());
