@@ -20,3 +20,5 @@ insert into teacher(id_teacher,name_teacher,age_teacher,country_teacher)
 value(1,'Quoc',30,'danang');
 
 
+
+
