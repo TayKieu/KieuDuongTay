@@ -1,10 +1,10 @@
-package repository.NoteManagement;
+package service.NoteManagement;
 
 import model.INotes;
 
 import java.util.List;
 
-public class INoteManagementRepositoryImpl implements INoteManagementRepository{
+public class INoteManagementServiceImpl implements INoteManagementService {
     @Override
     public List<INotes> searchNotes(String keyword) {
         return null;

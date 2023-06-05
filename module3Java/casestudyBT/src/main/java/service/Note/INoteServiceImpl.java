@@ -1,6 +1,6 @@
-package repository.Note;
+package service.Note;
 
-public class INoteRepositoryImpl implements INoteRepository {
+public class INoteServiceImpl implements INoteService {
     @Override
     public boolean save() {
         return false;

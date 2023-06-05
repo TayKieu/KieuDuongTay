@@ -1,6 +1,6 @@
-package repository.Note;
+package service.Note;
 
-public interface INoteRepository {
+public interface INoteService {
     boolean save();
     boolean delete();
 }
