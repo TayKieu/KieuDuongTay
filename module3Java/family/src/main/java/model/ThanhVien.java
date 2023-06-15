@@ -8,6 +8,11 @@ public class ThanhVien {
     private Date ngaySinh;
     private int maHoKhau;
 
+    public ThanhVien(String hoTen) {
+        this.hoTen = hoTen;
+    }
+
+
     public ThanhVien(String CCCD, String hoTen, Date ngaySinh, int maHoKhau) {
         this.CCCD = CCCD;
         this.hoTen = hoTen;
@@ -52,4 +57,5 @@ public class ThanhVien {
     public void setNgaySinh(Date ngaySinh) {
         this.ngaySinh = ngaySinh;
     }
+
 }
