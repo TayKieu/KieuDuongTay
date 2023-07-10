@@ -50,7 +50,7 @@
                 <th>Ngày lập hộ khẩu: </th>
                 <td>
                     <div class="input-group date" data-provide="datepicker">
-                        <input type="text" class="form-control" name="ngayLap"
+                        <input type="date" class="form-control" name="ngayLap"
                                value="<c:out value='${hokhau.ngayLapHoKhau}'/>"/>
                         <div class="input-group-addon">
                             <span class="glyphicon glyphicon-th"></span>

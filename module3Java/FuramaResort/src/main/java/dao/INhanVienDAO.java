@@ -6,5 +6,7 @@ import java.util.List;
 
 public interface INhanVienDAO {
     List<NhanVien> hienThiDSNhanVien();
-    NhanVien taoMoiNhanVien(NhanVien nhanVien);
+    void taoMoiNhanVien(NhanVien nhanVien);
+    NhanVien layNVTheoMaNV(int maNV);
+    boolean suaNhanVien(NhanVien nhanVien);
 }

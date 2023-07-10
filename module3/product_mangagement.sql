@@ -20,3 +20,5 @@ insert into product (`name`,price,quantity,color,`description`,categoryId) value
 ('LG TV 145','1500','10','Black','New',2),
 ('SS TV 145','1500','1','Ground','New',2),
 ('Dell I22','800','10','Black','New',4);
+
+

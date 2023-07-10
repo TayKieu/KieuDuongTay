@@ -27,7 +27,22 @@ public class NhanVienServlet extends HttpServlet {
         }
         switch (action){
             case "create": hienThiFormTaoMoi(request,response);break;
+            case "edit": hienThiFormSua(request,response);break;
             default: hienThiDSNhanVien(request,response);break;
+        }
+    }
+
+    private void hienThiFormSua(HttpServletRequest request, HttpServletResponse response) {
+        int ma = Integer.parseInt(request.getParameter("maNV"));
+        NhanVien nhanVienCanSua = iNhanVienDAO.layNVTheoMaNV(ma);
+        request.setAttribute("nv",nhanVienCanSua);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("view/SuaThongTinNV");
+        try{
+            dispatcher.forward(request,response);
+        } catch (ServletException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -69,6 +84,24 @@ public class NhanVienServlet extends HttpServlet {
     }
 
     private void themNhanVien(HttpServletRequest request, HttpServletResponse response) {
+        int maNV = Integer.parseInt(request.getParameter("maNV"));
+        String hoTen = request.getParameter("ten");
+        String ngaySinh = request.getParameter("ngaySinh");
+        String cmnd = request.getParameter("cmnd");
+        Double luong = Double.valueOf(request.getParameter("luong"));
+        String sdt = request.getParameter("sdt");
+        String email = request.getParameter("email");
+        String diaChi = request.getParameter("diaChi");
+        int maViTri = Integer.parseInt(request.getParameter("maViTri"));
+        int maTrinhDo = Integer.parseInt(request.getParameter("maTrinhDo"));
+        int maBoPhan = Integer.parseInt(request.getParameter("maBoPhan"));
+        NhanVien nhanVien = new NhanVien(maNV,hoTen,ngaySinh,cmnd,luong,sdt,email,diaChi,maViTri,maTrinhDo,maBoPhan);
 
+        try {
+            iNhanVienDAO.taoMoiNhanVien(nhanVien);
+            response.sendRedirect("/NhanVienServlet");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

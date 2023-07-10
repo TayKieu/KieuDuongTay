@@ -10,4 +10,5 @@ public interface IFamilyDAO {
 List<HoKhau> hienThiTatCaHoKhau();
 HoKhau layHoKhauTheoId(int id);
 Boolean suaHoKhau(HoKhau hoKhau);
+
 }
