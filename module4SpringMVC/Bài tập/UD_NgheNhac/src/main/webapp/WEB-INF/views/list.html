@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:replace="/layout::head">
+
+</div>
+<a th:href="@{/song/create}">Add new</a>
+<table border="1" style="border-collapse: collapse;">
+    <tr>
+        <th>STT</th>
+        <th>Id</th>
+        <th>Name song</th>
+        <th>Singer</th>
+        <th>Type</th>
+        <th>File</th>
+        <th>Edit</th>
+        <th>Delete</th>
+        <th>View</th>
+        <th>Detail3</th>
+    </tr>
+    <tr th:each="song,status: ${ListSong}">
+        <td th:text="${status.count}"></td>
+        <td th:text="${song.id}"></td>
+        <td th:text="${song.name}"></td>
+        <td th:text="${song.singer}"></td>
+        <td th:text="${song.type}"></td>
+        <td>
+            <audio controls><source th:src="@{/file/{code}(code=${song.file})}" type="audio/wav">
+            </audio>
+        </td>
+        <td><a th:href="@{/{id}/edit(id=${song.getId()})}">edit</a></td>
+        <td><a th:href="@{/{id}/delete(id=${song.getId()})}">delete</a></td>
+        <td><a th:href="@{/{id}/view(id=${song.getId()})}">view</a></td>
+    </tr>
+    <tr>
+        <td th:if="${song.size()==0}"colspan="8">
+            Danh sách trống
+        </td>
+    </tr>
+</table>
+<div th:replace="/layout :: footer"></div>
+<h1 th:text="#{test}"></h1>
+</body>
+</html>

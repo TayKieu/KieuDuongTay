@@ -33,11 +33,28 @@ public class IProductServiceImpl implements IProductService{
 
     @Override
     public void update(int id, Product product) {
-        products.put(id,product);
+        for (int i = 0; i <products.size() ; i++) {
+            if(products.get(i).getId() == id){
+                products.get(i).setName(product.getName());
+                products.get(i).setPrice(product.getPrice());
+            }
+        }
     }
 
     @Override
     public void delete(int id) {
         products.remove(id);
+    }
+
+    @Override
+    public List<Product> findbyName(String search) {
+        List<Product> product2 = new ArrayList<>();
+        
+        for(Product product : productList){
+            if(product.getName().toLowerCase().contains(search){
+                product2.add(product);
+            }
+        }
+        return product2;
     }
 }

@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.ArrayList;
@@ -46,5 +47,23 @@ public class ProductController {
         model.addAttribute("product", new Product());
         return "/create";
     }
-
+    @GetMapping("/{id}/edit")
+    public String edit(@PathVariable("id") int id, Model model){
+        return "edit";
+    }
+    @PostMapping("/update")
+    public String update(Product product, RedirectAttributes redirect){
+        service.update(product.getId(),product);
+        redirect.addFlashAttribute("message","update successful!");
+        return "redirect:/";
+    }
+    @GetMapping("/search")
+    public String search(@RequestParam("search") String search, Model model){
+        List<Product> products =service.findbyName(search);
+        if(products != null){
+            model.addAttribute("product",products);
+            return "index";
+        }
+        return null;
+    }
 }
