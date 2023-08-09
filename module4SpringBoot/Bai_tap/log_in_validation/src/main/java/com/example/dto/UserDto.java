@@ -52,10 +52,9 @@ public class UserDto implements Validator {
     @Override
     public void validate(Object target, Errors errors) {
         UserDto  userDto = (UserDto) target;
-        String age = String.valueOf(userDto.getAge());
         if (userDto.name.equals("")){
             errors.rejectValue("name",null, "Khong duoc de trong");
-        } else if (!(age.length() <18)) {
+        } else if (!(userDto.getAge() < 18)) {
             errors.rejectValue("age", null,"Khong du tuoi" );
         } else if (!userDto.name.matches("^[a-zA-Z]{5,45}$")){
             errors.rejectValue("name",null, "Khong dung dinh dang");

@@ -5,21 +5,30 @@
     <title>Title</title>
 </head>
 <body>
-<form th:object="userDto" th:action="@{/user/checkValidate}">
+<form th:object="${userDto}" th:action="@{/user/checkValidate}" method="post">
     <table>
         <tr>
             <td>Name</td>
-            <td><input th:field="*{userDto.name}"></td>
-            <small style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{userDto.name}"></small><br>
+            <td><label>
+                <input th:field="${userDto.name}">
+            </label></td>
+            <td><small style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="${userDto.name}"></small></td>
         <tr>
             <td>Age</td>
-            <td><input th:field="*{userDto.age}"></td>
-            <td th:if="${#fields.hasErrors('age')}" th:errors="*{userDto.age}"></td>
+            <td><label>
+                <input th:field="${userDto.age}">
+            </label></td>
+            <td><small style="color: red" th:if="${#fields.hasErrors('age')}" th:errors="${userDto.age}"></small></td>
+            <
+
         </tr>
         <tr>
             <td>Email</td>
-            <td><input th:field="*{userDto.email}"></td>
-            <td th:if="${#fields.hasErrors('email')}" th:errors="*{userDto.email}"></td>
+            <td><label>
+                <input th:field="${userDto.email}">
+            </label></td>
+            <td><small style="color: red" th:if="${#fields.hasErrors('email')}" th:errors="${userDto.email}"></small>
+            </td>
         </tr>
         <tr>
             <td>

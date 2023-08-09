@@ -18,17 +18,17 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping("user")
+@RequestMapping("/user")
 public class UserController {
     @Autowired
     private IUserService iUserService;
 
-    @GetMapping("/user/login")
+    @GetMapping("/login")
     public String showFormLogIn(Model model){
         model.addAttribute("userDto", new UserDto());
         return "/views/home";
     }
-    @PostMapping("/user/checkValidate")
+    @PostMapping("/checkValidate")
     public String checkValidate(@Valid @ModelAttribute UserDto userDto,
                                 BindingResult bindingResult,
                                 RedirectAttributes redirectAttributes,
