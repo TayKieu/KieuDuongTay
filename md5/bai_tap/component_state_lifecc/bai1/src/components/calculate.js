@@ -1,44 +1,45 @@
 import {Component} from "react";
 import {getValue} from "@testing-library/user-event/dist/utils";
 class Calculate extends Component{
-    constructor(props, valueA, valueB) {
+    constructor(props) {
         super(props);
         this.state={
-            valueA,
-            valueB,
+            valueA: '',
+            valueB: '',
+            res:''
         }
     }
-    inputValueA = ()=>{this.setState({valueA: getValue()})}
-    inputValueB = ()=>{this.setState({valueB: getValue()})}
+    inputValueA = (event)=>{this.setState({valueA: event.target.value})}
+    inputValueB = (event)=>{this.setState({valueB: event.target.value})}
 
 
     handlePlus = () =>{
         return (
-            this.state.valueA + this.state.valueB
+           this.setState({res: parseInt(this.state.valueA) + parseInt(this.state.valueB)})
         )
     }
     handleMinus = () =>{
         return (
-             this.state.valueA - this.state.valueB
+            this.setState({res:parseInt(this.state.valueA) - parseInt(this.state.valueB)})
         )
     }
     handleMulti = () =>{
         return (
-            this.state.valueA * this.state.valueB
+            this.setState({res:parseInt(this.state.valueA) * parseInt(this.state.valueB)})
         )
     }
     handleDivide = () =>{
         return (
-            this.state.valueA / this.state.valueB
+            this.setState({res:parseInt(this.state.valueA) / parseInt(this.state.valueB)})
         )
     }
 
     render() {
         return (
             <div>
-                <input type={"text"} onInput={this.inputValueA} />
-                <input type={"text"} onInput={this.inputValueB}/>
-                <p>result: <span></span></p>
+                <input type={"text"} onChange={(valueA => this.inputValueA(valueA))} value={this.state.valueA} />
+                <input type={"text"} onChange={(valueB => this.inputValueB(valueB))} value={this.state.valueB}/>
+                <p>result: <span>{this.state.res} </span></p>
                 <button onClick={this.handlePlus}>+</button>
                 <button onClick={this.handleMinus}>-</button>
                 <button onClick={this.handleMulti}>x</button>
