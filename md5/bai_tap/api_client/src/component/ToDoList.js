@@ -5,8 +5,7 @@ import * as listService from "../service/ToDoService"
 import {toast, ToastContainer} from "react-toastify";
 import {Dna} from "react-loader-spinner";
 import {useEffect, useState} from "react";
-import {array, string} from "yup";
-import {save} from "../service/ToDoService";
+
 
 export function Create() {
     const navigate = useNavigate()
@@ -17,7 +16,8 @@ export function Create() {
                 setLists(result)
             }
             fetchApi()
-        }, []
+        }, [lists]
+
     )
     return (
         <>
@@ -37,7 +37,7 @@ export function Create() {
                         setSubmitting(false)
                         // toast('new work added')
                         // navigate("/")
-                        window.location.reload()
+                        // window.location.reload()
                     }
                     create()
                 }}>
