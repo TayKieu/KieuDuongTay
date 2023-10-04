@@ -18,14 +18,14 @@ export const save = async (book)=>{
 
 export const findById = async (id) =>{
     try{
-        const  result = await axios.get("http://localhost:8080/books/{id}",id)
+        const  result = await axios.get(' http://localhost:8080/books/' + id)
         return result.data
     }catch (e){
         console.log(e)}
 }
-export const edit = async (bookEdit) =>{
+export const edit = async (id, bookEdit) =>{
     try{
-         await axios.put("http://localhost:8080/books",bookEdit)
+         await axios.put(' http://localhost:8080/books/' + id, bookEdit)
     }catch (e){
         console.log(e)}
 }

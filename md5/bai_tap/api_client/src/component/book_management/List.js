@@ -11,7 +11,7 @@ export function List() {
             setBooks(result)
         }
         fetchApi()
-    }, [books]);
+    }, []);
     return (
         <>
             <h1>Library</h1>
@@ -31,8 +31,8 @@ export function List() {
                             <td>{b.title}</td>
                             <td>{b.quantity}</td>
                             <td>
-                                <NavLink to='/update/:id' className='btn btn-primary'>Edit</NavLink>
-                                <NavLink to='/delete/:id' className='btn btn-danger'>Delete</NavLink>
+                                <NavLink to={`/update/${b.id}`} className='btn btn-primary'>Edit</NavLink>
+                                <NavLink to={`/delete/${b.id}`} className='btn btn-danger'>Delete</NavLink>
                             </td>
                         </tr>
                     ))

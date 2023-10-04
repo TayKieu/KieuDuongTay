@@ -1,21 +1,28 @@
 import {useEffect, useState} from "react";
 import * as bm_service from "../../service/Book_management_service"
-import {NavLink, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
+import {useParams} from "react-router";
 import {ErrorMessage, Field, Form, Formik} from "formik";
 import * as Yup from "yup";
 import {Dna} from "react-loader-spinner";
 
 export function Update() {
-    const [bookEdit, setBookEdit] = useState(bookEdit)
+    const {id} = useParams()
+    const [bookEdit, setBookEdit] = useState({
+        id: '',
+        title: '',
+        quantity: ''
+    })
     const navigate = useNavigate()
     useEffect(() => {
         const findById = async () => {
-            const result = await bm_service.findById()
+            const result = await bm_service.findById(id)
             setBookEdit(result)
+            console.log(result)
         }
         findById()
-    })
-    return (
+    }, [])
+    return bookEdit.title !== "" ? (
         <>
             <Formik initialValues={{
                 id: bookEdit.id,
@@ -25,15 +32,15 @@ export function Update() {
                     validationSchema={Yup.object({
                         title: Yup.string().required()
                     })}
-                    onSubmit={(values,{setSubmitting})=>{
-                        const edit = async ()=>{
+                    onSubmit={(values, {setSubmitting}) => {
+                        const edit = async () => {
                             setSubmitting(false)
-                            await bm_service.edit(values)
+                            await bm_service.edit(id, values)
                             navigate("/")
                         }
                         edit()
                     }}>
-                {({isSubmitting})=>(
+                {({isSubmitting}) => (
                     <div className='container'>
                         <h1>Add new book</h1>
                         <Form>
@@ -41,14 +48,16 @@ export function Update() {
                                 <label htmlFor='title' className='form-label'>
                                     Title
                                 </label>
-                                <Field type='text' className='form-control' id='title' name='title'></Field>
+                                <Field type='text' className='form-control' id='title'
+                                       name='title'></Field>
                                 <ErrorMessage name='title' component='span' className=' text-danger'></ErrorMessage>
                             </div>
                             <div className='mb-3'>
                                 <label htmlFor='quantity' className='form-label'>
                                     Quantity
                                 </label>
-                                <Field type='text' className='form-control' id='quantity' name='quantity'></Field>
+                                <Field type='text' className='form-control' id='quantity'
+                                       name='quantity'></Field>
                                 <ErrorMessage name='quantity' component='span' className=' text-danger'></ErrorMessage>
                             </div>
 
@@ -70,5 +79,5 @@ export function Update() {
             </Formik>
         </>
 
-    )
+    ): " "
 }
