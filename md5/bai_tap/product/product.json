@@ -1,12 +1,12 @@
 {
   "products": [
     {
-      "id": 1,
-      "name": "IP1",
+      "name": "IP111111",
       "quantity": 10,
       "description": "typicode",
       "category": 1,
-      "price": 10000
+      "price": 10000,
+      "id": 1
     },
     {
       "id": 2,
@@ -47,14 +47,6 @@
       "description": "edited",
       "category": 3,
       "price": "1101110101"
-    },
-    {
-      "name": "xiaomi1000",
-      "quantity": "10",
-      "description": "new",
-      "category": "3",
-      "price": "99999",
-      "id": 7
     },
     {
       "id": 8,

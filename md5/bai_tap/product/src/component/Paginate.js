@@ -9,46 +9,32 @@ export function Paginate(props) {
     const [key, setKey] = useState('')
     const {data} = props
     console.log(data)
-    const [currentItems, setCurrentItems] = useState([])
-    // const [pageCount, setPageCount] = useState(0)
-    // const [itemOffset, setItemOffset] = useState(0)
-
-
 
     const [currentPage,setCurrentPage]=useState(1)
     const recordsPerPage = 3
     const lastIndex = currentPage * recordsPerPage
     const firstIndex = lastIndex - recordsPerPage
-    const records = data.slice(firstIndex,lastIndex)
+    const currenRecords = data.slice(firstIndex,lastIndex)
+    const [records,setRecords] = useState([])
     const npage = Math.ceil(data.length/recordsPerPage)
     const numbers = [...Array(npage + 1).keys()].slice(1)
 
-
-    // const itemsPerPage = 2
     //Category
     const [categories, setCategories] = useState([])
     useEffect(() => {
-        // const endOffset = itemOffset + itemsPerPage
-        // if (key === "") {
-        //     setCurrentItems(records)
-        // }
-        // setPageCount(Math.ceil(data.length / itemsPerPage))
-
+        if (key === "") {
+            setRecords(currenRecords)
+        }
         const fetchApi = async () => {
             const result = await category_service.findAllCategories()
             setCategories(result)
         }
         fetchApi()
-    },[data,key])
-    // }, [itemOffset, itemsPerPage, data, key])
+    },[])
 
-    // const handlePageClick = (event) => {
-    //     const newOffset = (event.selected + itemsPerPage) % data.length
-    //     setItemOffset(newOffset)
-    // }
     const handleDelete = async (id) => {
         await product_service.deleteById(id)
-        setCurrentItems((prevProduct) => prevProduct.filter((product) => product.id !== id));
+        setRecords((prevProduct) => prevProduct.filter((product) => product.id !== id));
         toast('🦄 Delete book successfully!!!!');
     }
     const changeSearch = (event) => {
@@ -60,7 +46,7 @@ export function Paginate(props) {
         }
         const fetchApi = async () => {
             const result = await product_service.findByKey(params.key)
-            setCurrentItems(result)
+            setRecords(result)
         }
         fetchApi()
     }
@@ -129,24 +115,6 @@ export function Paginate(props) {
                     </tbody>
                 </table>
             </div>
-            {/*<ReactPaginate*/}
-            {/*    breakLabel="..."*/}
-            {/*    nextLabel="next >"*/}
-            {/*    onPageChange={handlePageClick}*/}
-            {/*    pageRangeDisplayed={2}*/}
-            {/*    pageCount={pageCount}*/}
-            {/*    previousLabel="< previous"*/}
-            {/*    pageClassName="page-item"*/}
-            {/*    pageLinkClassName="page-link"*/}
-            {/*    previousClassName="page-item"*/}
-            {/*    previousLinkClassName="page-link"*/}
-            {/*    nextClassName="page-item"*/}
-            {/*    nextLinkClassName="page-link"*/}
-            {/*    breakClassName="page-item"*/}
-            {/*    breakLinkClassName="page-link"*/}
-            {/*    containerClassName="pagination"*/}
-            {/*    activeClassName="active"*/}
-            {/*/>*/}
             <nav>
                 <ul className='pagination'>
                     <li className='page-item'>
