@@ -150,11 +150,42 @@
         </div>
 
         <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-            <li><a href="#" class="nav-link px-2 link-secondary">Home</a></li>
-            <li><a href="#" class="nav-link px-2">Cho thuê phòng trọ</a></li>
-            <li><a href="#" class="nav-link px-2">Cho thuê nhà ở</a></li>
-            <li><a href="#" class="nav-link px-2">Cho thuê căn hộ</a></li>
-            <li><a href="#" class="nav-link px-2">Ở ghép</a></li>
+            <li><div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    Dropdown button
+                </button>
+                <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+                    <li><a class="dropdown-item active" href="#">Action</a></li>
+                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="#">Separated link</a></li>
+                </ul>
+            </div></li>
+            <li><div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                    Dropdown button
+                </button>
+                <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+                    <li><a class="dropdown-item active" href="#">Action</a></li>
+                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="#">Separated link</a></li>
+                </ul>
+            </div></li>
+            <li><div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton3" data-bs-toggle="dropdown" aria-expanded="false">
+                    Dropdown button
+                </button>
+                <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+                    <li><a class="dropdown-item active" href="#">Action</a></li>
+                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="#">Separated link</a></li>
+                </ul>
+            </div></li>
         </ul>
 
         <div class="col-md-3 text-end">
@@ -184,7 +215,7 @@
                                 <h5 class="card-acreage">Diện tích: <%=r.getAcreage()%>m²</h5>
                                 <h5 class="card-area">Khu vực: <%=r.getArea()%>
                                 </h5>
-                                <a href="/RentServlet?action=viewDetail&rentDetailId=<%=r.getRentDetailId()%>&ownerId=<%=r.getOwnerId()%>" class="btn btn-primary">Xem chi tiết</a>
+                                <a href="/RentServlet?action=viewDetail&rentDetailId=<%=r.getRentDetailId()%>&userId=0" class="btn btn-primary">Xem chi tiết</a>
                             </div>
                         </div>
                     </div>
@@ -240,7 +271,7 @@
                             <h5 class="card-acreage">Diện tích: <%=r.getAcreage()%>m²</h5>
                             <h5 class="card-area">Khu vực: <%=r.getArea()%>
                             </h5>
-                            <a href="/RentServlet?action=viewDetail&rentDetailId=<%=r.getRentDetailId()%>&ownerId=<%=r.getOwnerId()%>&userId=<%=user.getId()%>" class="btn btn-primary">Xem chi tiết</a>
+                            <a href="/RentServlet?action=viewDetail&rentDetailId=<%=r.getRentDetailId()%>&userId=<%=user.getId()%>" class="btn btn-primary">Xem chi tiết</a>
                         </div>
                     </div>
                 </div>
@@ -257,5 +288,8 @@
             started guide</a>.</p>
     </div>
 </footer>
+<script src="/docs/5.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+
 </body>
 </html>

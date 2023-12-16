@@ -70,4 +70,70 @@ public class RentDAO {
         }
         return rowUpdate;
     }
+    private static final String FIND_RENT_DETAIL_BY_ID = "select * from rent_detail join user on rent_detail.user_id = user.id where rent_detail.rent_detail_id = ?";
+    public static RentDetail findRentDetailById(int rentDetailId){
+        try{
+            Connection connection = ConnectDBUtils.getConnection();
+            PreparedStatement statement = connection.prepareStatement(FIND_RENT_DETAIL_BY_ID);
+            statement.setInt(1,rentDetailId);
+            ResultSet rs = statement.executeQuery();
+            if(rs.next()){
+                RentDetail rentDetail = new RentDetail();
+                rentDetail.setRentDetailId(rentDetailId);
+                rentDetail.setArea(rs.getString("area"));
+                rentDetail.setAddress(rs.getString("address"));
+                rentDetail.setAcreage(rs.getInt("acreage"));
+                rentDetail.setInfo(rs.getString("info"));
+                rentDetail.setPrices(rs.getInt("prices"));
+                rentDetail.setTitle(rs.getString("title"));
+                rentDetail.setImg(rs.getString("img"));
+                rentDetail.setRentTypeId(rs.getInt("rent_type_id"));
+                rentDetail.setOwnerId(rs.getInt("user_id"));
+                rentDetail.setOwnerAccountName(rs.getString("account_name"));
+                rentDetail.setOwnerEmail(rs.getString("email"));
+                rentDetail.setOwnerPhone(rs.getString("phone"));
+                return rentDetail;
+            }
+            return null;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private static final String DELETE_BY_ID = "delete from rent_detail where rent_detail_id = ?";
+    public static boolean deleteByID(int rentDetailId){
+        Boolean rowDelete;
+        try{
+            Connection connection = ConnectDBUtils.getConnection();
+            PreparedStatement statement = connection.prepareStatement(DELETE_BY_ID);
+            statement.setInt(1,rentDetailId);
+            rowDelete = statement.executeUpdate()>0;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return rowDelete;
+    }
+
+    private static final String UPDATE_RENT_INFO = "update rent_detail set area = ?, address = ?, acreage = ?, info =?, prices = ?, title = ?, img = ?, rent_type_id = ?, user_id = ? where rent_detail_id = ?";
+    public static boolean updateRentInfo(RentDetail rentDetail){
+        Boolean rowUpdate;
+        try{
+            Connection connection = ConnectDBUtils.getConnection();
+            PreparedStatement statement = connection.prepareStatement(UPDATE_RENT_INFO);
+            statement.setString(1,rentDetail.getArea());
+            statement.setString(2,rentDetail.getAddress());
+            statement.setInt(3,rentDetail.getAcreage());
+            statement.setString(4,rentDetail.getInfo());
+            statement.setInt(5,rentDetail.getPrices());
+            statement.setString(6,rentDetail.getTitle());
+            statement.setString(7,rentDetail.getImg());
+            statement.setInt(8,rentDetail.getRentTypeId());
+            statement.setInt(9,rentDetail.getOwnerId());
+            statement.setInt(10,rentDetail.getRentDetailId());
+            rowUpdate = statement.executeUpdate()>0;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return rowUpdate;
+    }
 }

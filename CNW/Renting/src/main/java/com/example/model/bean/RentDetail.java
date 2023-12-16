@@ -11,8 +11,27 @@ public class RentDetail {
     private String img;
     private int rentTypeId;
     private int ownerId;
+    private String ownerAccountName;
+    private String ownerEmail;
+    private String ownerPhone;
 
     public RentDetail() {
+    }
+
+    public RentDetail(int rentDetailId, String area, String address, int acreage, String info, int prices, String title, String img, int rentTypeId, int ownerId, String ownerAccountName, String ownerEmail, String ownerPhone) {
+        this.rentDetailId = rentDetailId;
+        this.area = area;
+        this.address = address;
+        this.acreage = acreage;
+        this.info = info;
+        this.prices = prices;
+        this.title = title;
+        this.img = img;
+        this.rentTypeId = rentTypeId;
+        this.ownerId = ownerId;
+        this.ownerAccountName = ownerAccountName;
+        this.ownerEmail = ownerEmail;
+        this.ownerPhone = ownerPhone;
     }
 
     public RentDetail(int rentDetailId, String area, String address, int acreage, String info, int prices, String title, String img, int rentTypeId, int ownerId) {
@@ -38,6 +57,30 @@ public class RentDetail {
         this.img = img;
         this.rentTypeId = rentTypeId;
         this.ownerId = ownerId;
+    }
+
+    public String getOwnerAccountName() {
+        return ownerAccountName;
+    }
+
+    public void setOwnerAccountName(String ownerAccountName) {
+        this.ownerAccountName = ownerAccountName;
+    }
+
+    public String getOwnerEmail() {
+        return ownerEmail;
+    }
+
+    public void setOwnerEmail(String ownerEmail) {
+        this.ownerEmail = ownerEmail;
+    }
+
+    public String getOwnerPhone() {
+        return ownerPhone;
+    }
+
+    public void setOwnerPhone(String ownerPhone) {
+        this.ownerPhone = ownerPhone;
     }
 
     public String getTitle() {

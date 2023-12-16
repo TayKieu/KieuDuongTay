@@ -33,14 +33,70 @@ public class RentServlet extends HttpServlet {
             case "viewDetail":
                 showViewDetailForm(request, response);
                 break;
+            case "editCard":
+                showEditCardForm(request, response);
+                break;
+            case "deleteCard":
+                delete(request, response);
+                break;
             default:
                 showHomePage(request, response);
                 break;
         }
     }
 
-    private void showViewDetailForm(HttpServletRequest request, HttpServletResponse response) {
+    private void delete(HttpServletRequest request, HttpServletResponse response) {
+        int rentDetailId = Integer.parseInt(request.getParameter("rentDetailId"));
+        RentBO.deleteById(rentDetailId);
+        showHomePage(request, response);
+    }
 
+    private void showEditCardForm(HttpServletRequest request, HttpServletResponse response) {
+        int userId = Integer.parseInt(request.getParameter("userId"));
+        int rentDetaiId = Integer.parseInt(request.getParameter("rentDetailId"));
+        User user = UserBO.findById(userId);
+        RentDetail rentDetail = RentBO.findRentDetailById(rentDetaiId);
+        if (user != null) {
+            request.getSession().setAttribute("User", user);
+            request.getSession().setAttribute("Rent", rentDetail);
+            RequestDispatcher rd = request.getRequestDispatcher("view/editCard.jsp");
+            try {
+                rd.forward(request, response);
+            } catch (ServletException e) {
+                throw new RuntimeException(e);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
+    private void showViewDetailForm(HttpServletRequest request, HttpServletResponse response) {
+        int userId = Integer.parseInt(request.getParameter("userId"));
+        int rentDetaiId = Integer.parseInt(request.getParameter("rentDetailId"));
+        User user = UserBO.findById(userId);
+        RentDetail rentDetail = RentBO.findRentDetailById(rentDetaiId);
+        if (user != null) {
+            request.getSession().setAttribute("User", user);
+            request.getSession().setAttribute("Rent", rentDetail);
+            RequestDispatcher rd = request.getRequestDispatcher("view/viewDetail.jsp");
+            try {
+                rd.forward(request, response);
+            } catch (ServletException e) {
+                throw new RuntimeException(e);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        } else {
+            request.getSession().setAttribute("Rent", rentDetail);
+            RequestDispatcher rd = request.getRequestDispatcher("view/viewDetail.jsp");
+            try {
+                rd.forward(request, response);
+            } catch (ServletException e) {
+                throw new RuntimeException(e);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 
     private void showEditOwnerForm(HttpServletRequest request, HttpServletResponse response) {
@@ -112,12 +168,48 @@ public class RentServlet extends HttpServlet {
                 createNewPost(request, response);
                 break;
             case "editOwner":
-                editOwner(request, response);
+                editOwnerInCreate(request, response);
+                break;
+            case "editOwnerInCard":
+                editOwnerInCard(request, response);
+                break;
+            case "editCard":
+                editCard(request,response);
                 break;
         }
     }
 
-    private void editOwner(HttpServletRequest request, HttpServletResponse response) {
+    private void editOwnerInCard(HttpServletRequest request, HttpServletResponse response) {
+        int userId = Integer.parseInt(request.getParameter("userId"));
+        String accountName = request.getParameter("accountName");
+        String email = request.getParameter("email");
+        String phone = request.getParameter("phone");
+        RentBO.editOwnerContactInfo(accountName, email, phone, userId);
+        showEditCardForm(request,response);
+    }
+
+    private void editCard(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            request.setCharacterEncoding("UTF-8");
+            int rentDetailId = Integer.parseInt(request.getParameter("rentDetailId"));
+            String area = request.getParameter("area");
+            String address = request.getParameter("address");
+            int acreage = Integer.parseInt(request.getParameter("acreage"));
+            String info = request.getParameter("info");
+            int prices = Integer.parseInt(request.getParameter("prices"));
+            String title = request.getParameter("title");
+            String img = request.getParameter("img");
+            int rentTypeId = Integer.parseInt(request.getParameter("rentTypeId"));
+            int userId = Integer.parseInt(request.getParameter("userId"));
+            RentDetail newRentDetail = new RentDetail(rentDetailId,area, address, acreage, info, prices, title, img, rentTypeId, userId);
+            RentBO.updateRentInfo(newRentDetail);
+            showViewDetailForm(request,response);
+        } catch (UnsupportedEncodingException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void editOwnerInCreate(HttpServletRequest request, HttpServletResponse response) {
         int userId = Integer.parseInt(request.getParameter("userId"));
         String accountName = request.getParameter("accountName");
         String email = request.getParameter("email");

@@ -32,14 +32,14 @@
 <form class="needs-validation" novalidate action="/RentServlet?action=editOwner&userId=<%=user.getId()%>" method="post" accept-charset="UTF-8">
         <div class="col-md-6 mb-3">
             <label for="accountName">Account name:</label>
-            <input type="text" class="form-control" id="accountName" name="accountName" placeholder="Enter account name" value="" required>
+            <input type="text" class="form-control" id="accountName" name="accountName" placeholder="Enter account name" value="<%=user.getAccountName()%>" required>
             <div class="invalid-feedback">
                 Valid account name is required.
             </div>
         </div>
         <div class="col-md-6 mb-3">
             <label for="email">Email</label>
-            <input type="email" class="form-control" id="email" name="email" placeholder="you@gmail.com" value=""
+            <input type="email" class="form-control" id="email" name="email" placeholder="you@gmail.com" value="<%=user.getEmail()%>"
                    required>
             <div class="invalid-feedback">
                 Valid email is required.
@@ -47,7 +47,7 @@
         </div>
     <div class="col-md-6 mb-3">
         <label for="phone">Phone number</label>
-        <input type="text" class="form-control" id="phone" name="phone" placeholder="" value=""
+        <input type="text" class="form-control" id="phone" name="phone" placeholder="" value="<%=user.getPhone()%>"
                required>
         <div class="invalid-feedback">
             Valid phone number is required.

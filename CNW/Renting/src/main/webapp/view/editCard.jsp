@@ -1,4 +1,5 @@
 <%@ page import="com.example.model.bean.User" %>
+<%@ page import="com.example.model.bean.RentDetail" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!doctype html>
 <html lang="en">
@@ -29,13 +30,14 @@
 <body class="bg-light">
 <%
     User user = (User) request.getSession().getAttribute("User");
+    RentDetail rent = (RentDetail) request.getSession().getAttribute("Rent");
 %>
 <div class="container">
     <div class="py-5 text-center">
         <img class="d-block mx-auto mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg"
              alt="" width="72" height="72">
         <h2>Your New Rent </h2>
-        <p class="lead">Nhập thông tin cần thiết để khách hàng xem và lựa chọn </p>
+        <p class="lead">Chỉnh sửa bài đăng </p>
     </div>
     <hr class="mb-4">
     <div class="row">
@@ -73,18 +75,18 @@
         </div>
         <div class="col-md-8 order-md-1">
             <h4 class="mb-3">Your post for renting</h4>
-            <form class="needs-validation" novalidate action="/RentServlet?action=create&userId=<%=user.getId()%>" method="post" accept-charset="UTF-8">
+            <form class="needs-validation" novalidate action="/RentServlet?action=editCard&rentDetailId=<%=rent.getRentDetailId()%>&userId=<%=user.getId()%>" method="post" accept-charset="UTF-8">
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label for="area">Area</label>
-                        <input type="text" class="form-control" id="area" name="area" placeholder="" value="" required>
+                        <input type="text" class="form-control" id="area" name="area" placeholder="" value="<%=rent.getArea()%>" required>
                         <div class="invalid-feedback">
                             Valid area is required.
                         </div>
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="address">Address</label>
-                        <input type="text" class="form-control" id="address" name="address" placeholder="" value=""
+                        <input type="text" class="form-control" id="address" name="address" placeholder="" value="<%=rent.getAddress()%>"
                                required>
                         <div class="invalid-feedback">
                             Valid address is required.
@@ -98,7 +100,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text">m²</span>
                         </div>
-                        <input type="text" class="form-control" id="acreage" name="acreage" placeholder="" required>
+                        <input type="text" class="form-control" id="acreage" name="acreage" placeholder="" value="<%=rent.getAcreage()%>" required>
                         <div class="invalid-feedback" style="width: 100%;">
                             Acreage is required.
                         </div>
@@ -106,11 +108,11 @@
                 </div>
                 <div class="mb-3">
                     <label for="title">Title for the post</label>
-                    <input type="text" class="form-control" id="title" name="title" placeholder="Enter title">
+                    <input type="text" class="form-control" id="title" name="title" placeholder="Enter title" value="<%=rent.getTitle()%>">
                 </div>
                 <div class="mb-3">
                     <label for="info">Information</label>
-                    <input type="text" class="form-control" id="info" name="info" placeholder="Enter description">
+                    <input type="text" class="form-control" id="info" name="info" placeholder="Enter description" value="<%=rent.getInfo()%>">
                     <div class="invalid-feedback">
                         Please enter some informations for customer.
                     </div>
@@ -118,7 +120,7 @@
 
                 <div class="mb-3">
                     <label for="prices">Prices</label>
-                    <input type="text" class="form-control" id="prices" name="prices" placeholder="Price per month"
+                    <input type="text" class="form-control" id="prices" name="prices" placeholder="Price per month" value="<%=rent.getPrices()%>"
                            required>
                     <div class="invalid-feedback">
                         Please enter prices.
@@ -126,7 +128,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="img">Image preview: </label>
-                    <input type="text" class="form-control" id="img" name="img" placeholder="Enter link " required>
+                    <input type="text" class="form-control" id="img" name="img" placeholder="Enter link " value="<%=rent.getImg()%>" required>
                     <div class="invalid-feedback">
                         Please enter link to image.
                     </div>
