@@ -162,6 +162,37 @@
             <a class="btn btn-primary" role="button" href="/UserServlet?action=register">Đăng ký</a>
         </div>
     </header>
+    <main role="main">
+        <div>
+            <h1>Cho Thuê Phòng Trọ, Thuê Nhà Trọ Giá Rẻ, Chính Chủ</h1>
+            <small>Cho thuê phòng trọ, nhà trọ giá rẻ hàng đầu Việt Nam - Cập nhật thông tin cho thuê phòng trọ nhanh chóng,
+                chính xác, thông tin xác thực.</small>
+        </div>
+        <% List<RentDetail> rentCards = (List<RentDetail>) request.getAttribute("rentCards");
+            for (RentDetail r : rentCards) {
+        %>
+        <div class="container">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                <div class="col">
+                    <div class="card-container">
+                        <div class="card" style="width: 18rem">
+                            <img src="<%=r.getImg()%>" class="card-img-top" alt="Image">
+                            <div class="card-body">
+                                <h5 class="card-title"><%=r.getTitle()%>
+                                </h5>
+                                <h5 class="card-prices"><%=r.getPrices()%>/Tháng</h5>
+                                <h5 class="card-acreage">Diện tích: <%=r.getAcreage()%>m²</h5>
+                                <h5 class="card-area">Khu vực: <%=r.getArea()%>
+                                </h5>
+                                <a href="/RentServlet?action=viewDetail&rentDetailId=<%=r.getRentDetailId()%>&ownerId=<%=r.getOwnerId()%>" class="btn btn-primary">Xem chi tiết</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <% } %>
+    </main>
 </div>
 <% } else {%>
 <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
@@ -182,12 +213,11 @@
     </ul>
 
     <div class="col-md-3 text-end">
-        <a class="btn btn-outline-primary me-2" role="button" href="/RentServlet?action=createNewPost">Đăng bài </a>
+        <a class="btn btn-outline-primary me-2" role="button" href="/RentServlet?action=create&userId=<%=user.getId()%>">Đăng bài </a>
         <a class="btn btn-primary" role="button" href="/UserServlet?action=register"><%=user.getAccountName()%>
         </a>
     </div>
 </header>
-<%}%>
 <main role="main">
     <div>
         <h1>Cho Thuê Phòng Trọ, Thuê Nhà Trọ Giá Rẻ, Chính Chủ</h1>
@@ -207,10 +237,10 @@
                             <h5 class="card-title"><%=r.getTitle()%>
                             </h5>
                             <h5 class="card-prices"><%=r.getPrices()%>/Tháng</h5>
-                            <h5 class="card-acreage">Diện tích: <%=r.getAcreage()%>m2</h5>
+                            <h5 class="card-acreage">Diện tích: <%=r.getAcreage()%>m²</h5>
                             <h5 class="card-area">Khu vực: <%=r.getArea()%>
                             </h5>
-                            <a href="#" class="btn btn-primary">Xem chi tiết</a>
+                            <a href="/RentServlet?action=viewDetail&rentDetailId=<%=r.getRentDetailId()%>&ownerId=<%=r.getOwnerId()%>&userId=<%=user.getId()%>" class="btn btn-primary">Xem chi tiết</a>
                         </div>
                     </div>
                 </div>
@@ -219,6 +249,7 @@
     </div>
     <% } %>
 </main>
+<%}%>
 <footer class="text-muted">
     <div class="container">
         <p>Album example is &copy; Bootstrap, but please download and customize it for yourself!</p>

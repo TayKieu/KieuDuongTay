@@ -13,4 +13,7 @@ public class UserBO {
         }
         return new UserDAO().CheckLogin(username,password);
     }
+    public static User findById(int idUser){
+        return new UserDAO().findById(idUser);
+    }
 }

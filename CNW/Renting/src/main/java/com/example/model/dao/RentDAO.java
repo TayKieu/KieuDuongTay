@@ -55,4 +55,19 @@ public class RentDAO {
             throw new RuntimeException(e);
         }
     }
+    private static final String EDIT_OWNER_CONTACT_INFORMATION = "update user set account_name = ?, email = ?, phone = ? where id = ? ";
+    public static boolean editOwnerContactInfo (String accountName, String email, String phone, int userId){
+        boolean rowUpdate;
+        try{Connection connection = ConnectDBUtils.getConnection();
+            PreparedStatement statement = connection.prepareStatement(EDIT_OWNER_CONTACT_INFORMATION);
+            statement.setString(1,accountName);
+            statement.setString(2,email);
+            statement.setString(3,phone);
+            statement.setInt(4,userId);
+            rowUpdate = statement.executeUpdate()>0;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return rowUpdate;
+    }
 }

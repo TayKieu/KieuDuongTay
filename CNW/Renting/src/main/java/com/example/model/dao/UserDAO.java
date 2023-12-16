@@ -50,4 +50,27 @@ public class UserDAO {
         }
     }
 
+    private static final String FIND_USER_BY_ID = "select * from user where id = ?";
+     public  static User findById(int id){
+        try{
+            Connection connection = ConnectDBUtils.getConnection();
+            PreparedStatement statement = connection.prepareStatement(FIND_USER_BY_ID);
+            statement.setInt(1,id);
+            ResultSet rs = statement.executeQuery();
+            if(rs.next()){
+                User user = new User();
+                user.setId(id);
+                user.setUsername(rs.getString("username"));
+                user.setPassword(rs.getString("password"));
+                user.setAccountName(rs.getString("account_name"));
+                user.setEmail(rs.getString("email"));
+                user.setPhone(rs.getString("phone"));
+                return user;
+            }
+            return null;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }

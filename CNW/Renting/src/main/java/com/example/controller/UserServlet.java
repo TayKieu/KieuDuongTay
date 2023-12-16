@@ -14,8 +14,6 @@ import java.util.List;
 @WebServlet(name = "UserServlet", value = "/UserServlet")
 public class UserServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    UserBO userBO;
-    RentBO rentBO;
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");

@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConnectDBUtils {
-    private static final String jdbcURL = "jdbc:mysql://localhost:3306/rent";
+    private static final String jdbcURL = "jdbc:mysql://localhost:3306/rent?useUnicode=yes&characterEncoding=UTF-8";
     private static final String jdbcUsername = "root";
     private static final String jdbcPassword = "12345";
 
